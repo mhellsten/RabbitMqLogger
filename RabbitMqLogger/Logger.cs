@@ -43,30 +43,6 @@ namespace RabbitMqLogger
             await PublishMessageAsync(CreateMessage(LogLevel.Fatal, message, messageType, category, exception));
         }
 
-        private LogMessage CreateMessage(LogLevel level, string message, MessageType messageType = MessageType.Info, string category = "Uncategorized", Exception exception = null)
-        {
-            return new LogMessage
-            {
-                LogLevel = level,
-                Category = category,
-                DateTimeUtc = DateTime.UtcNow,
-                Machine = Environment.MachineName,
-                Message = message,
-                MessageType = messageType,
-                Exception = exception?.ToString()
-            };
-        }
-
-        private void PublishMessage(LogMessage message)
-        {
-            _bus.Publish(message, _topic);
-        }
-
-        private async Task PublishMessageAsync(LogMessage message)
-        {
-            await _bus.PublishAsync(message, _topic);
-        }
-
         public void Debug(string message, MessageType messageType = MessageType.Info, string category = "Uncategorized")
         {
             DebugAsync(message, messageType, category).Wait();
@@ -90,6 +66,25 @@ namespace RabbitMqLogger
         public void Fatal(string message, MessageType messageType = MessageType.Info, string category = "Uncategorized", Exception exception = null)
         {
             FatalAsync(message, messageType, category, exception).Wait();
+        }
+
+        private LogMessage CreateMessage(LogLevel level, string message, MessageType messageType = MessageType.Info, string category = "Uncategorized", Exception exception = null)
+        {
+            return new LogMessage
+            {
+                LogLevel = level,
+                Category = category,
+                DateTimeUtc = DateTime.UtcNow,
+                Machine = Environment.MachineName,
+                Message = message,
+                MessageType = messageType,
+                Exception = exception?.ToString()
+            };
+        }
+
+        private async Task PublishMessageAsync(LogMessage message)
+        {
+            await _bus.PublishAsync(message, _topic);
         }
 
         public void Dispose()

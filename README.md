@@ -38,7 +38,7 @@ Note: There is an optional parameter to install it in the current user's directo
     Write-InfoRmqLog "Test logging"
     Write-ErrorRmqLog "Bad issue occurred" ([RabbitMqLogger.MessageType]::JobStart) "Bootstrapping" "FileNotFoundException: C:\Goofy.gif"
 
-![LogWatcher output screenshot](/LogWatcher/screenshot.png?raw=true "LogWatcher Output Screenshot")
+![LogWatcher output screenshot](/RabbitMqLogger.LogWatcher/screenshot.png?raw=true "LogWatcher Output Screenshot")
 
 ## Exported Functions:
 * New-RmqLogger

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EasyNetQ;
 using EasyNetQ.FluentConfiguration;
-using RabbitMqLogger;
 
-namespace LogWatcher
+namespace RabbitMqLogger.LogWatcher
 {
     class Program
     {

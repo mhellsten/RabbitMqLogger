@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqLogger", "RabbitMqLogger\RabbitMqLogger.csproj", "{DBC5AB23-F9D3-49E4-A68B-4D241E1BADD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogWatcher", "LogWatcher\LogWatcher.csproj", "{2C7A53E5-5AAB-44F1-913F-BA62BB459F1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqLogger.DatabaseWriter", "RabbitMqLogger.DatabaseWriter\RabbitMqLogger.DatabaseWriter.csproj", "{F52710FA-DAD4-4FCC-B11E-0B5FC5C47C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqLogger.LogWatcher", "RabbitMqLogger.LogWatcher\RabbitMqLogger.LogWatcher.csproj", "{2C7A53E5-5AAB-44F1-913F-BA62BB459F1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{DBC5AB23-F9D3-49E4-A68B-4D241E1BADD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBC5AB23-F9D3-49E4-A68B-4D241E1BADD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBC5AB23-F9D3-49E4-A68B-4D241E1BADD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52710FA-DAD4-4FCC-B11E-0B5FC5C47C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52710FA-DAD4-4FCC-B11E-0B5FC5C47C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52710FA-DAD4-4FCC-B11E-0B5FC5C47C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52710FA-DAD4-4FCC-B11E-0B5FC5C47C76}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C7A53E5-5AAB-44F1-913F-BA62BB459F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C7A53E5-5AAB-44F1-913F-BA62BB459F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C7A53E5-5AAB-44F1-913F-BA62BB459F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU

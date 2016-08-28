@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace RabbitMqLogger
 {
@@ -27,6 +23,8 @@ namespace RabbitMqLogger
 
     public class LogMessage
     {
+        [Key]
+        public int LogMessageId { get; set; }
         public DateTime DateTimeUtc { get; set; }
         public LogLevel LogLevel { get; set; }
         public string Category { get; set; }

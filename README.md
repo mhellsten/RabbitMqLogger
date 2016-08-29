@@ -36,7 +36,7 @@ Note: There is an optional parameter to install it in the current user's directo
     Import-Module RabbitMqLogger
     New-RmqLogger rabbit.local
     Write-InfoRmqLog "Test logging"
-    Write-ErrorRmqLog "Bad issue occurred" ([RabbitMqLogger.MessageType]::JobStart) "Bootstrapping" "FileNotFoundException: C:\Goofy.gif"
+    Write-ErrorRmqLog "Bad issue occurred" $rmq.JobStart "Bootstrapping" "FileNotFoundException: C:\Goofy.gif"
 
 ![LogWatcher output screenshot](/RabbitMqLogger.LogWatcher/screenshot.png?raw=true "LogWatcher Output Screenshot")
 

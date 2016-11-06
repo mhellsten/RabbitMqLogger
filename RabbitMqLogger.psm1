@@ -12,6 +12,15 @@ $global:rmq.JobEnd = [RabbitMqLogger.MessageType]::JobEnd
 $global:rmq.StepStart = [RabbitMqLogger.MessageType]::StepStart
 $global:rmq.StepEnd = [RabbitMqLogger.MessageType]::StepEnd
 
+function HandleException($exception) {
+	$inner = $exception.InnerException
+	while ($inner) {
+		$exception = $inner
+		$inner = $exception.InnerException
+	}
+	Write-Error "Could not log to RMQ: $($exception.Message)"
+}
+
 function New-RmqLogger($host, $topic = "GlobalLogging") {
 	$global:rmq.Logger = New-Object RabbitMqLogger.Logger -ArgumentList $host, $topic
 }
@@ -27,7 +36,11 @@ function Write-DebugRmqLog(
 		[RabbitMqLogger.MessageType]$type = $global:rmq.Info, 
 		[string]$category = "Uncategorized") {
 	Assert-Logger
-	$global:rmq.Logger.Debug($message, $type, $category)
+	try {
+		$global:rmq.Logger.Debug($message, $type, $category)
+	} catch {
+		HandleException $_.Exception
+	}
 }
 
 function Write-InfoRmqLog(
@@ -35,7 +48,11 @@ function Write-InfoRmqLog(
 		[RabbitMqLogger.MessageType]$type = $global:rmq.Info, 
 		[string]$category = "Uncategorized") {
 	Assert-Logger
-	$global:rmq.Logger.Info($message, $type, $category)
+	try {
+		$global:rmq.Logger.Info($message, $type, $category)
+	} catch {
+		HandleException $_.Exception
+	}
 }
 
 function Write-WarnRmqLog(
@@ -43,7 +60,11 @@ function Write-WarnRmqLog(
 		[RabbitMqLogger.MessageType]$type = $global:rmq.Info, 
 		[string]$category = "Uncategorized") {
 	Assert-Logger
-	$global:rmq.Logger.Warn([string]$message, $type, $category)
+	try {
+		$global:rmq.Logger.Warn([string]$message, $type, $category)
+	} catch {
+		HandleException $_.Exception
+	}
 }
 
 function Write-ErrorRmqLog(
@@ -52,7 +73,11 @@ function Write-ErrorRmqLog(
 		[string]$category = "Uncategorized", 
 		$error = $null) {
 	Assert-Logger
-	$global:rmq.Logger.Error($message, $type, $category, $error)
+	try {
+		$global:rmq.Logger.Error($message, $type, $category, $error)
+	} catch {
+		HandleException $_.Exception
+	}
 }
 
 function Write-FatalRmqLog(
@@ -61,7 +86,11 @@ function Write-FatalRmqLog(
 		[string]$category = "Uncategorized", 
 		$error = $null) {
 	Assert-Logger
-	$global:rmq.Logger.Fatal($message, $type, $category, $error)
+	try {
+		$global:rmq.Logger.Fatal($message, $type, $category, $error)
+	} catch {
+		HandleException $_.Exception
+	}
 }
 
 Export-ModuleMember -Function New-RmqLogger

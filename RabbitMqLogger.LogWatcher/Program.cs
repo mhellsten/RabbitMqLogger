@@ -18,7 +18,14 @@ namespace RabbitMqLogger.LogWatcher
             var connection = new ConnectionConfiguration {Hosts = new[] {new HostConfiguration {Host = args[0]}}};
             using (var bus = RabbitHutch.CreateBus(connection, register => { }))
             {
-                var configure = args.Length == 1 ? (Action<ISubscriptionConfiguration>)(c => { }) : c => c.WithTopic(args[1]);
+                Action<ISubscriptionConfiguration> configure = c =>
+                {
+                    c.WithMaxLength(100);
+                    if (args.Length == 2)
+                    {
+                        c.WithTopic(args[1]);
+                    }
+                };
                 bus.Subscribe<LogMessage>("LogWatcher", PrintMessage, configure);
                 while (Console.ReadKey().Key != ConsoleKey.Q) { }
             }
